@@ -72,9 +72,15 @@ $tableDate VARCHAR(50)
     }
   }
 
-  Future<void> deleteById(int id) async {
+  Future<int> deleteById(int id) async {
     assert(id > 0 && id < (double.maxFinite));
     Database db = await this.open();
     return await db.delete(tableName, where: "$tableId = ?", whereArgs: [id]);
+  }
+
+  Future<void> deleteMultipleById(List<int> id) async {
+    for (var i in id) {
+      await deleteById(i);
+    }
   }
 }

@@ -1,13 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:noteapp/models/note.dart';
 import 'package:noteapp/utils/constants.dart';
 import 'package:noteapp/utils/database.dart';
-import 'package:noteapp/utils/functions.dart';
 import 'package:noteapp/utils/language.dart';
 
 class AddNote extends StatefulWidget {
+  final Note note;
+
+  const AddNote({this.note});
   @override
   _AddNoteState createState() => _AddNoteState();
 }
@@ -16,42 +16,30 @@ class _AddNoteState extends State<AddNote> {
   DBHelp db = DBHelp();
   final TextEditingController noteText = TextEditingController();
   final GlobalKey catKey = GlobalKey();
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String catValue = kCategoryList.keys.first;
   FocusNode _focusNode = FocusNode();
   int count = 0;
-
   Note myNote;
 
   @override
   Widget build(BuildContext context) {
+    bool newNote = (widget.note == null);
+
     return Scaffold(
-      key: scaffoldKey,
       appBar: AppBar(
-        title: Text(Language.newNote),
+        title: Text(newNote ? Language.newNote : Language.editNote),
         actions: <Widget>[
           IconButton(
             onPressed: () async {
               if (formKey.currentState.validate()) {
                 _focusNode.unfocus();
-
                 myNote = Note(category: catValue, note: noteText.text);
                 int res = await db.add(myNote); //ID of the newly inserted tuple
                 if (res > 0) {
-                  allNoteKey.currentState.showSnackBar(
-                    SnackBar(
-                      content: Text(Language.noteAdded),
-                    ),
-                  );
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                  // pop(context);
+                  Navigator.of(context).pop(true);
                 } else {
-                  showAlert(
-                    context: context,
-                    body: Language.noteNotAdded,
-                    title: Language.noteNotAddedTitle,
-                  );
+                  Navigator.of(context).pop(false);
                 }
               }
             },

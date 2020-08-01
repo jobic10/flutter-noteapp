@@ -27,5 +27,3 @@ final Map<String, Color> kCategoryList = {
   Language.catFamily: Colors.pink,
   Language.catStudy: Colors.purple
 };
-
-final GlobalKey<ScaffoldState> allNoteKey = GlobalKey<ScaffoldState>();

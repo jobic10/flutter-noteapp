@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:noteapp/utils/constants.dart';
-import 'package:noteapp/utils/functions.dart';
 
 class PageNotFound extends StatelessWidget {
   @override
@@ -35,7 +34,7 @@ class PageNotFound extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
-              resetRoute(context);
+              Navigator.of(context).popUntil((route) => route.isFirst);
             },
           ),
         ],

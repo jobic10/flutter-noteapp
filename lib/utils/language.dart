@@ -4,6 +4,7 @@ class Language {
   static final String appTitle = "Notes";
   static final String addNewNoteButtonHint = "Click here to add new note";
   static final String newNote = "New Note";
+  static final String editNote = "Edit Note";
   static final String addNewNote = "Add new note here...";
   static final String characterCounter = "character";
   static final String catUncategorized = "Uncategorized";

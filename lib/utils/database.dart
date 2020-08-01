@@ -46,7 +46,6 @@ $tableNote TEXT,
 $tableCategory VARCHAR(40),
 $tableDate VARCHAR(50)
 );""");
-    print("Created Database");
   }
 
   Future<List<Note>> getNote() async {
@@ -60,16 +59,18 @@ $tableDate VARCHAR(50)
 
   Future<int> add(Note note) async {
     Database db = await this.open();
-    // if (_dbHelper == null) await open();
-    // print(note.toMap());
     try {
       int res = await db.insert(tableName, note.toMap());
-      print("Okay, the insert returned => $res");
       return res;
     } catch (e) {
-      print(e.toString());
       return -1;
     }
+  }
+
+  Future<int> updateNote(Note note) async {
+    Database db = await this.open();
+    return await db.update(tableName, note.toMap(),
+        where: "$tableId = ?", whereArgs: [note.id]);
   }
 
   Future<int> deleteById(int id) async {

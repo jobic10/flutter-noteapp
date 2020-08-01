@@ -7,39 +7,79 @@ import 'package:noteapp/utils/language.dart';
 class AddNote extends StatefulWidget {
   final Note note;
 
-  const AddNote({this.note});
+  AddNote({this.note});
   @override
   _AddNoteState createState() => _AddNoteState();
 }
 
 class _AddNoteState extends State<AddNote> {
   DBHelp db = DBHelp();
-  final TextEditingController noteText = TextEditingController();
+  TextEditingController noteText;
+  String catValue;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    noteText = TextEditingController(
+        text: widget.note == null ? null : widget.note.note);
+    catValue =
+        widget.note == null ? kCategoryList.keys.first : widget.note.category;
+  }
+
   final GlobalKey catKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String catValue = kCategoryList.keys.first;
   FocusNode _focusNode = FocusNode();
   int count = 0;
   Note myNote;
-
   @override
   Widget build(BuildContext context) {
-    bool newNote = (widget.note == null);
-
+    bool newNote = widget.note == null;
     return Scaffold(
       appBar: AppBar(
-        title: Text(newNote ? Language.newNote : Language.editNote),
+        title: Text(
+          newNote ? Language.newNote : Language.editNote,
+          style: kAppTitleStyle,
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () async {
               if (formKey.currentState.validate()) {
                 _focusNode.unfocus();
-                myNote = Note(category: catValue, note: noteText.text);
-                int res = await db.add(myNote); //ID of the newly inserted tuple
-                if (res > 0) {
-                  Navigator.of(context).pop(true);
+
+                if (!newNote) {
+                  myNote = Note.withId(
+                      id: widget.note.id,
+                      category: catValue,
+                      note: noteText.text);
+
+                  int res = await db.updateNote(myNote);
+                  if (res > 0) {
+                    Navigator.of(context).pop(myNote);
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Text("Note Not Updated"),
+                        title: Text("Error"),
+                      ),
+                    );
+                  }
                 } else {
-                  Navigator.of(context).pop(false);
+                  myNote = Note(category: catValue, note: noteText.text);
+
+                  int res =
+                      await db.add(myNote); //ID of the newly inserted tuple
+                  if (res > 0) {
+                    Navigator.of(context).pop(true);
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Text("Note could not be created"),
+                        title: Text("Error"),
+                      ),
+                    );
+                  }
                 }
               }
             },
@@ -80,7 +120,11 @@ class _AddNoteState extends State<AddNote> {
                               groupValue: catValue,
                             ),
                           ),
-                          Text(e.key),
+                          Text(e.key,
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              )),
                         ],
                       ),
                     ),
@@ -116,6 +160,10 @@ class _AddNoteState extends State<AddNote> {
                   decoration: InputDecoration(
                       hintText: Language.addNewNote,
                       border: InputBorder.none,
+                      counterStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                       counterText:
                           "$count ${Language.characterCounter}${count < 2 ? '' : 's'}"),
                   toolbarOptions: ToolbarOptions(
@@ -124,7 +172,11 @@ class _AddNoteState extends State<AddNote> {
                     cut: true,
                     selectAll: true,
                   ),
-                  style: TextStyle(fontSize: 20, wordSpacing: 5),
+                  style: TextStyle(
+                    wordSpacing: 5,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

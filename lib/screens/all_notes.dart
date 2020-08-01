@@ -24,7 +24,6 @@ class _AllNotesState extends State<AllNotes> {
 
   @override
   Widget build(BuildContext context) {
-    print(selected);
     return Scaffold(
       body: FutureBuilder(
         future: db.getNote(),
@@ -55,14 +54,19 @@ class _AllNotesState extends State<AllNotes> {
                         maxLines: 2,
                         style: TextStyle(
                           color: kCategoryList[data.category],
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onTap: () {
+                      onTap: () async {
                         if (selected.isNotEmpty)
                           selectThis(data.id);
                         else
-                          Navigator.of(context)
-                              .pushNamed("/edit", arguments: data);
+                          await Navigator.of(context)
+                              .pushNamed("/edit", arguments: data)
+                              .then((value) {
+                            setState(() {});
+                          });
                       },
                       onLongPress: () {
                         if (selected.indexOf(data.id) == -1) {
@@ -70,7 +74,13 @@ class _AllNotesState extends State<AllNotes> {
                           selectThis(data.id);
                         }
                       },
-                      subtitle: Text(data.category),
+                      subtitle: Text(
+                        data.category,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       trailing: IconButton(
                         icon: Icon(Icons.delete_forever),
                         onPressed: () async {

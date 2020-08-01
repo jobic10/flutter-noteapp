@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/utils/language.dart';
 
 final ThemeData kAppTheme = ThemeData(
-  primarySwatch: Colors.orange,
-  visualDensity: VisualDensity.adaptivePlatformDensity,
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: Colors.orange,
-    splashColor: Colors.deepOrange,
-  ),
-);
+    primarySwatch: Colors.orange,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.orange,
+      splashColor: Colors.deepOrange,
+    ),
+    fontFamily: kFontItaliannoRegular,
+    textTheme: TextTheme());
 
 final String kAppName = Language.appName;
 final String kErrorLink = "/\$404";

@@ -94,7 +94,10 @@ class _AllNotesState extends State<AllNotes> {
               );
             } else {
               return Center(
-                child: Text(Language.noNote),
+                child: Text(
+                  Language.noNote,
+                  style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                ),
               );
             }
           } else {

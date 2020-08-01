@@ -1,16 +1,20 @@
-# noteapp
+# Flutter Note Keeper Application
 
-A new Flutter project.
+**My first back-end application using Flutter.**
 
-## Getting Started
+Be nice to me, this is my first flutter "Complete" app.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Demo](/home/unknown/Desktop/demo.gif)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Overview
+
+- CRUD operations using SQLflite
+- Checked list
+- Responsiveness (50%)
+- Let's collaborate and improve this. 
+
+**Looking forward to your pull requests which will help me write better code and better structure my project henceforth. **
+
+Please give this repo a star 😃

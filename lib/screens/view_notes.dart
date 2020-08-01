@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noteapp/models/note.dart';
 import 'package:noteapp/utils/constants.dart';
+import 'package:noteapp/utils/language.dart';
 
 class ViewNote extends StatefulWidget {
   Note note;
@@ -30,7 +31,7 @@ class _ViewNoteState extends State<ViewNote> {
                   .then((value) {
                 if (value != null) {
                   key.currentState.showSnackBar(SnackBar(
-                    content: Text("Note Updated"),
+                    content: Text(Language.noteUpdated),
                   ));
                   widget.note = value;
                   setState(() {});

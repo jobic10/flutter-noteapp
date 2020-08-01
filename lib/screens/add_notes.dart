@@ -59,8 +59,8 @@ class _AddNoteState extends State<AddNote> {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        content: Text("Note Not Updated"),
-                        title: Text("Error"),
+                        content: Text(Language.noteNotUpdated),
+                        title: Text(Language.error),
                       ),
                     );
                   }
@@ -160,6 +160,10 @@ class _AddNoteState extends State<AddNote> {
                   decoration: InputDecoration(
                       hintText: Language.addNewNote,
                       border: InputBorder.none,
+                      errorStyle: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                       counterStyle: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

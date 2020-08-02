@@ -15,6 +15,6 @@ Be nice to me, this is my first flutter "Complete" app.
 - Responsiveness (50%)
 - Let's collaborate and improve this. 
 
-**Looking forward to your pull requests which will help me write better code and better structure my project henceforth. **
+**Looking forward to your pull requests which will help me write better code and better structure my project henceforth.**
 
 Please give this repo a star 😃

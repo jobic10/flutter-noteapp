@@ -10,7 +10,7 @@ class Language {
   static final String editNote = "Edit Note";
   static final String addNewNote = "Add new note here...";
   static final String characterCounter = "character";
-  static final String catUncategorized = "Uncategorized";
+  static final String catUncategorized = "Un-categorized";
   static final String catWork = "Work";
   static final String catPersonal = "Personal";
   static final String catFamily = "Family Affair";
@@ -20,7 +20,7 @@ class Language {
   static final String smallContent =
       "Please consider adding more text to your note";
   static final String noNote = "No note yet, create one";
-  static final String noteAdded = "New note has been created succesfully";
+  static final String noteAdded = "New note has been created successfully";
   static final String noteNotAdded =
       "Note could not be created. Please limit your characters";
   static final String noteAddedTitle = "Note added";

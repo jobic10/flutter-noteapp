@@ -6,15 +6,16 @@ Be nice to me, this is my first flutter "Complete" app.
 
 
 
-![Demo](/home/unknown/Desktop/demo.gif)
+![Demo](demo.gif)
 
 ## Overview
 
-- CRUD operations using SQLflite
+- CRUD operations using SQFlite
 - Checked list
-- Responsiveness (50%)
+- Responsiveness
+- Futures and FutureBuilder
 - Let's collaborate and improve this. 
 
-**Looking forward to your pull requests which will help me write better code and better structure my project henceforth.**
+**Looking forward to your pull requests which will help me write better code and better structure my project henceforth. **
 
 Please give this repo a star 😃
